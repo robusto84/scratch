@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+   <title>Awkward Combo Generator</title>
+</head>
+
+<body>
+<p>Welcome to the Awkward Combo Generator. Please click the button below to generate your awkward combination. <br></p>
+
+<form>
+ <br>
+  <input type="text" id="name1"> and 
+  <input type="text" id="name2">
+</form>
+
+<button onclick="generateCombo()">Generate Combo</button>
+<button onclick="save()">Save</button>
+<button onclick="del()">Delete</button>
+
+<script>
+
+var savedlist = [];
+
+var members = ["Geem",
+               "Geep",
+	       "Mireille",
+	       "Kevin",
+	       "Alysha",
+	       "Kayla",
+	       "Airielle",
+	       "Amanda",
+	       "Agnel",
+	       "Noah",
+	       "Isaac",
+	       "Karen",
+	       "Steve",
+	       "Lionel",
+	       "Hyacinth",
+	       "Dwayne",
+	       "Barbara",
+	       "Rex",
+	       "Ryan",
+	       "Jamilah",
+	       "Sofia",
+	       "Sasha",
+	       "Reagan",
+	       "Rhys",
+	       "Nazi",
+	       "Derrick",
+	       "Oreska",
+	       "Dan",
+	       "Mel",
+	       "Olivia",
+	       "Taha",
+	       "Carlton",
+	       "Lorraine",
+	       "Chris",
+	       "Natasha",
+	       "Christian",
+	       "Caroline",
+	       "Vikram",
+	       "Chad",
+	       "Teresa",
+	       "Vienna",
+	       "Kenny",
+	       "Linda",
+	       "Shane",
+	       "Chelsea",
+	       "Dylan"];
+
+function getIndex(min, max)
+{
+   return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function generateCombo() {
+   var index1 = getIndex(0,45);
+   var index2 = getIndex(0,45);
+
+   while (index2 == index1)
+      index2 = getIndex(0,45);
+
+   document.getElementById("name1").value = members[index1];
+   document.getElementById("name2").value = members[index2];
+}
+
+function printList(){
+
+if (savedlist.length == 0)
+   document.getElementById("full_list").innerHTML = "";
+
+   for (i=0; i < savedlist.length; ++i)
+   {
+      document.getElementById("full_list").innerHTML = savedlist.join('');
+   }
+}
+
+function save() {
+   if (document.getElementById("name1").value != "" && document.getElementById("name2").value != "")
+	   savedlist.push(document.getElementById("name1").value + " and " + document.getElementById("name2").value + "<br>");
+   printList();
+}
+
+function del() {
+   savedlist.pop();
+   printList();
+}
+
+</script>
+
+<p id="full_list"></p>
+
+</body>
+</html>
